@@ -89,10 +89,9 @@ def crack_code(suspicion, code):
 def escape(suspicion):
     danger = suspicion // 3
     progress = 0
-    print("Action Options: 1: RUN, 2: HIDE, 3: Shortcut")
     
     while (danger < 10 and progress < 10):
-        choice = int(input("What Action Do You Want To Take: "))
+        choice = int(input("What Action Do You Want To Take? 1 = Run, 2 = Hide, 3 = Shortcut: "))
         if choice == 1:
             gamble = random.randint(1,100)    
             if gamble <= 60:
@@ -102,7 +101,7 @@ def escape(suspicion):
                 progress += 1
                 danger += 1
                 print(f"You Run But Someone Hears You, Theyre on Your Tail! Progress = {progress}, Danger = {danger}")
-        if choice == 2:
+        elif choice == 2:
             gamble = random.randint(1,100)    
             if gamble <= 80:
                 progress += 1
@@ -110,7 +109,7 @@ def escape(suspicion):
             else:
                 danger += 2
                 print(f"You Hide But Someone Is Investigating The Room! Progress = {progress}, Danger = {danger}")
-        if choice == 3:    
+        elif choice == 3:    
             gamble = random.randint(1,100)    
             if gamble <= 50:
                 progress += 3
@@ -118,5 +117,9 @@ def escape(suspicion):
             else:
                 danger += 3
                 print(f"You Take a Shortcut But Its a Deadend! Progress = {progress}, Danger = {danger}")
+        else:
+            print("Invalid Input, You can only enter 1,2,3")
     return progress
-#def heist(name):
+
+def heist(name):
+    
