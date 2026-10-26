@@ -2,14 +2,6 @@ import time
 import random
 import math
 
-"""   print("Choose Your Entry Method, 1-6, Higher is Easier")
-    print("Option 1:") 
-    print("Option 2:") 
-    print("Option 3:")
-    print("Option 4:") 
-    print("Option 5:") 
-    print("Option 6:") 
-"""
    # choice = int(input("Enter Which Entry Option You Wish to Use: "))
 #reuse above lines in the heist function cuz they go there not here :/
 def enter(choice, code):
@@ -43,18 +35,21 @@ def enter(choice, code):
 
 def side_room(investigate, code):
     suspicion = 0
-    if investigate == True:
-        luck = random.randint(1,100)
-        print("You Stumble Upon a Side Room, Its The Managers Office")
-        if luck > 80:
-            clue = code
-        elif (luck > 30 and luck < 81):
-            hundreds = code//100
-            tens =(code - (100*hundreds))//10
-            clue = (code - (100*hundreds) - (10*tens))
-        elif (luck >0 and luck < 31):
+
+    
+    luck = random.randint(1,100)
+    print("You Stumble Upon a Side Room, Its The Managers Office")
+    answer = input("Investigate? True or False: ")
+    investigate = (answer == "True")
+    if luck > 80:
+        clue = code
+    elif (luck > 30 and luck < 81):
+        hundreds = code//100
+        tens =(code - (100*hundreds))//10
+        clue = (code - (100*hundreds) - (10*tens))
+    elif (luck >0 and luck < 31):
     #        print("Unlucky You Found nothing")
-            clue = -1
+        clue = -1
         suspicion = math.ceil(luck / 20)
     else:
         print("You Saw a Side Room, But You Choose To Skip Past Striaght to The Vault")
@@ -122,4 +117,37 @@ def escape(suspicion):
     return progress
 
 def heist(name):
+    suspicion = 0
+    print(f"Greetings {name}, Welcome To Watch Heist")
+    code = random.randint(100,999)
+    if DEBUG == True:
+        print(code)
+    print("Lets Begin")
     
+    print("Option 1: Sewer") 
+    print("Option 2: Vents") 
+    print("Option 3: Roof Top")
+    print("Option 4: Windows") 
+    print("Option 5: Side Door") 
+    print("Option 6: Front Door") 
+    
+    choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier"))
+
+    firstsuspicion, clue1 = enter(choice, code)
+
+    suspicion += firstsuspicion
+
+    
+
+    investigate = input("You find a side room, do you wish to investigate? (True or False)")
+
+    side_room_suspicion, side_room_clue = side_room(investigate, code)
+    suspicion += side_room_suspicion
+
+    print(f"Total Suspicion: {suspicion}")
+    crack_code(suspicion, code)
+
+    escape(suspicion)
+
+
+
