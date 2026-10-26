@@ -37,20 +37,22 @@ def side_room(investigate, code):
     suspicion = 0
 
     
-    luck = random.randint(1,100)
-    print("You Stumble Upon a Side Room, Its The Managers Office")
-    answer = input("Investigate? True or False: ")
-    investigate = (answer == "True")
-    if luck > 80:
-        clue = code
-    elif (luck > 30 and luck < 81):
-        hundreds = code//100
-        tens =(code - (100*hundreds))//10
-        clue = (code - (100*hundreds) - (10*tens))
-    elif (luck >0 and luck < 31):
-    #        print("Unlucky You Found nothing")
-        clue = -1
+    
+    
+    if investigate == True:
+        luck = random.randint(1,100)
+        print("You Stumble Upon a Side Room, Its The Managers Office")
+        if luck > 80:
+            clue = code
+        elif (luck > 30 and luck < 81):
+            hundreds = code//100
+            tens =(code - (100*hundreds))//10
+            clue = (code - (100*hundreds) - (10*tens))
+        elif (luck >0 and luck < 31):
+        #        print("Unlucky You Found nothing")
+            clue = -1
         suspicion = math.ceil(luck / 20)
+            
     else:
         print("You Saw a Side Room, But You Choose To Skip Past Striaght to The Vault")
         clue = -1
@@ -137,9 +139,8 @@ def heist(name):
 
     suspicion += firstsuspicion
 
-    
-
-    investigate = input("You find a side room, do you wish to investigate? (True or False)")
+    answer = input("Investigate? True or False: ")
+    investigate = (answer == "True")
 
     side_room_suspicion, side_room_clue = side_room(investigate, code)
     suspicion += side_room_suspicion
