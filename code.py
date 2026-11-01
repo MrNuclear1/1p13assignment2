@@ -1,9 +1,20 @@
+#Yusuf Pasha
+# MACID: pashay
+# Student #: 400684246
+
 import time
 import random
 import math
 
    # choice = int(input("Enter Which Entry Option You Wish to Use: "))
 #reuse above lines in the heist function cuz they go there not here :/
+
+def print_signature():
+    print("Your Name")
+    print("Your MacID")
+    print("ENG 1P13 - Computing Assignment 2")
+
+
 def enter(choice, code):
     suspicion = 0
 
@@ -119,36 +130,77 @@ def escape(suspicion):
     return progress
 
 def heist(name):
-    suspicion = 0
-    print(f"Greetings {name}, Welcome To Watch Heist")
-    code = random.randint(100,999)
-    if DEBUG == True:
-        print(code)
-    print("Lets Begin")
+    again = "Y"
+    while again == "Y":
+        suspicion = 0
+        print(f"Greetings {name}, Welcome To Watch Heist")
+        code = random.randint(100,999)
+        if DEBUG == True:
+            print(code)
+        print("Lets Begin")
+        
+        print("Option 1: Sewer") 
+        print("Option 2: Vents") 
+        print("Option 3: Roof Top")
+        print("Option 4: Windows") 
+        print("Option 5: Side Door") 
+        print("Option 6: Front Door") 
+        
+        choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier"))
+
+        firstsuspicion, clue1 = enter(choice, code)
+
+        suspicion += firstsuspicion
+
+        print(f"Total Suspicion: {suspicion}")
+        if clue1 == (-1):
+            print("Combo is between 100-499")
+        elif clue1 == (-2):
+            print("Combo is between 500-999")
+        else:
+            print(f"First digit of the code is {clue1}")
+
+
+        answer = input("Investigate? True or False: ")
+        investigate = (answer == "True")
+
+        side_room_suspicion, side_room_clue = side_room(investigate, code)
+        suspicion += side_room_suspicion
+
+        if side_room_clue == -1:
+            print("No clue found")
+        elif side_room_clue < 10:
+            print(f"Last digit is {side_room_clue}")
+        else:
+            print(f"The code is {side_room_clue}")
+
+        print(f"Total Suspicion: {suspicion}")
+        
+        newsuspicion, correctcode = crack_code(suspicion, code)
+        suspicion += newsuspicion
+        print(f"Total Suspicion: {suspicion}")
+
+        progress = escape(suspicion)
+        if progress >= 10 and correctcode == True:
+            print("You Escaped With The Watches!")
+        elif progress >= 10:
+            print("You Escaped But Didn't Crack The Code")
+        else:
+            print("You Got Caught!")
+        if progress >= 10 and correctcode == True:
+            break
+        else:
+            again = input("Try Again? Y/N: ")
+
+
+DEBUG = True
+print_signature()
+
+
+## TODO ADD THE PRINT SIGNATURE FUNCTION
+## Maybe reorder this stuff at the bottom
+## Study for 1p13 midterm :/
+name = input("Enter Your Name: ")
+heist(name)
+
     
-    print("Option 1: Sewer") 
-    print("Option 2: Vents") 
-    print("Option 3: Roof Top")
-    print("Option 4: Windows") 
-    print("Option 5: Side Door") 
-    print("Option 6: Front Door") 
-    
-    choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier"))
-
-    firstsuspicion, clue1 = enter(choice, code)
-
-    suspicion += firstsuspicion
-
-    answer = input("Investigate? True or False: ")
-    investigate = (answer == "True")
-
-    side_room_suspicion, side_room_clue = side_room(investigate, code)
-    suspicion += side_room_suspicion
-
-    print(f"Total Suspicion: {suspicion}")
-    crack_code(suspicion, code)
-
-    escape(suspicion)
-
-
-
