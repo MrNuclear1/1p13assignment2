@@ -1,5 +1,4 @@
 DEBUG = True
-import time
 import random
 import math
 
@@ -77,7 +76,8 @@ def crack_code(suspicion, code):
     print(f"You Have {maxattempts} Guesses")
     while (maxattempts > 0 and correct == False):
             
-            comboguess = int(input("Enter Your Combo Guess: "))
+            print("Enter Your Combo Guess Below")
+            comboguess = int(input())
             
             if comboguess != code:
                 newsuspicion += 1
@@ -133,6 +133,7 @@ def heist(name):
     while again == "Y":
         suspicion = 0
         print(f"Greetings {name}, Welcome To Watch Heist")
+        print("Your goal is to break into a luxury watch store, holding the prized Rainbow Daytona Worth 500K USD")
         code = random.randint(100,999)
         if DEBUG == True:
             print(code)
@@ -145,7 +146,10 @@ def heist(name):
         print("Option 5: Side Door") 
         print("Option 6: Front Door") 
         
-        choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier: "))
+        print("Choose Your Entry Method, 1-6, Higher is Easier")
+        choice = int(input())
+        while choice < 1 or choice > 6:
+            choice = int(input("Invalid Choice Try Again (1-6)"))
 
         firstsuspicion, clue1 = enter(choice, code)
 
@@ -191,8 +195,6 @@ def heist(name):
         else:
             again = input("Try Again? Y/N: ")
 
-
-DEBUG = True
 
 print_signature()
 
