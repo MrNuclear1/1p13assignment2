@@ -1,18 +1,17 @@
-#Yusuf Pasha
-# MACID: pashay
-# Student #: 400684246
-
+DEBUG = True
 import time
 import random
 import math
 
-   # choice = int(input("Enter Which Entry Option You Wish to Use: "))
-#reuse above lines in the heist function cuz they go there not here :/
+
 
 def print_signature():
-    print("Your Name")
-    print("Your MacID")
-    print("ENG 1P13 - Computing Assignment 2")
+    print("Yusuf Pasha")
+    print("400684246, Engineering 1")
+    print("ENG 1P13: Integrated Cornerstone Design Projects in Engineering")
+    print("Dr. Sam Scott")
+    print("Fall 2026")
+
 
 
 def enter(choice, code):
@@ -146,7 +145,7 @@ def heist(name):
         print("Option 5: Side Door") 
         print("Option 6: Front Door") 
         
-        choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier"))
+        choice = int(input("Choose Your Entry Method, 1-6, Higher is Easier: "))
 
         firstsuspicion, clue1 = enter(choice, code)
 
@@ -194,13 +193,10 @@ def heist(name):
 
 
 DEBUG = True
+
 print_signature()
 
+NAME = input("Enter Your Name: ")
 
-## TODO ADD THE PRINT SIGNATURE FUNCTION
-## Maybe reorder this stuff at the bottom
-## Study for 1p13 midterm :/
-name = input("Enter Your Name: ")
-heist(name)
-
-    
+heist(NAME)
+ 
