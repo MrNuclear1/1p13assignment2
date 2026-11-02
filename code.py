@@ -4,6 +4,15 @@ import math
 
 
 
+#ADD COMMMMMMMENTS
+
+
+#ADD COMMMMMMMENTS
+
+
+#ADD COMMMMMMMENTS
+
+
 def print_signature():
     print("Yusuf Pasha")
     print("400684246, Engineering 1")
@@ -36,11 +45,9 @@ def enter(choice, code):
     else:
         clue = code//100
 
-#   print (clue)
-#  print (suspicion)
+
     return suspicion, clue
-#Test case...
-#enter(4, random.randint(100,999))
+
 
 def side_room(investigate, code):
     suspicion = 0
@@ -58,7 +65,7 @@ def side_room(investigate, code):
             tens =(code - (100*hundreds))//10
             clue = (code - (100*hundreds) - (10*tens))
         elif (luck >0 and luck < 31):
-        #        print("Unlucky You Found nothing")
+
             clue = -1
         suspicion = math.ceil(luck / 20)
             
@@ -98,7 +105,8 @@ def escape(suspicion):
     progress = 0
     
     while (danger < 10 and progress < 10):
-        choice = int(input("What Action Do You Want To Take? 1 = Run, 2 = Hide, 3 = Shortcut: "))
+        print("What Action Do You Want To Take? 1 = Run, 2 = Hide, 3 = Shortcut")
+        choice = int(input())
         if choice == 1:
             gamble = random.randint(1,100)    
             if gamble <= 60:
@@ -201,4 +209,6 @@ print_signature()
 NAME = input("Enter Your Name: ")
 
 heist(NAME)
- 
+
+
+#ADD COMMMMMMMENTS
