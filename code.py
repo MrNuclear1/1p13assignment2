@@ -2,18 +2,17 @@ DEBUG = True
 import random
 import math
 
-
-
-#ADD COMMMMMMMENTS
-
-
-#ADD COMMMMMMMENTS
-
-
-#ADD COMMMMMMMENTS
-
-
+"""
+Yusuf Pasha 
+400684246 
+Computing Assignment #2, text based heist game, 
+where a player must break in crack a code and escape undetected
+"""
 def print_signature():
+    """
+    Prints my name, student number, course code, professors name, and semester/year
+    no returns and no parameters 
+    """
     print("Yusuf Pasha")
     print("400684246, Engineering 1")
     print("ENG 1P13: Integrated Cornerstone Design Projects in Engineering")
@@ -23,6 +22,12 @@ def print_signature():
 
 
 def enter(choice, code):
+    """
+    First Scene of the game, entry into the store
+    parameters: entry choice (int 1-6) and the vault code (randint 100-999)
+    returns the suspicion raised and the clue given based on choice
+    outputs the number of guards alerted during the break in
+    """
     suspicion = 0
 
     guard1 = random.randint(1,6)
@@ -38,6 +43,8 @@ def enter(choice, code):
 
     print (f"{suspicion} Guards Were Alerted")
 
+
+    #Clue given is dependant on the entry choice, harder entry methods are rewarded with a better clue
     if (choice >= 4 and code < 500):
         clue = -1
     elif (choice >= 4 and code >= 500):
@@ -51,24 +58,26 @@ def enter(choice, code):
 
 def side_room(investigate, code):
     suspicion = 0
-
-    
-    
-    
+    """
+    Second scene of the game, thief investigates a side room for potential clues
+    takes the invvestigation choice (Y/N) and the vault code (randint 100-999) as parameters
+    outputs the clue message from sideroom
+    returns suspicion and the clue
+    """
     if investigate == True:
         luck = random.randint(1,100)
         print("You Stumble Upon a Side Room, Its The Managers Office")
         if luck > 80:
             clue = code
         elif (luck > 30 and luck < 81):
+            #math to extract the last digit of vault code
             hundreds = code//100
             tens =(code - (100*hundreds))//10
             clue = (code - (100*hundreds) - (10*tens))
         elif (luck >0 and luck < 31):
-
             clue = -1
-        suspicion = math.ceil(luck / 20)
-            
+        # if you get higher luck and get a good clue your suspicion also increases unf
+        suspicion = math.ceil(luck / 20)    
     else:
         print("You Saw a Side Room, But You Choose To Skip Past Striaght to The Vault")
         clue = -1
@@ -76,6 +85,12 @@ def side_room(investigate, code):
     return suspicion, clue
 
 def crack_code(suspicion, code):
+    """
+    third scene in the game, its basically a guessing game of the vault code
+    with the number of attempts determined by total suspicion raised
+    returns new suspicion (int) and whether or not you guessed correct
+    """
+    #the total attempts to crack the code is based off of how much suspicion you have raised through the game
     maxattempts = 10 - suspicion
     newsuspicion = 0
     attemptnumber = 1
@@ -101,9 +116,15 @@ def crack_code(suspicion, code):
 
 
 def escape(suspicion):
+    """
+    final scene of the game, the escape from the robbery
+    takes total suspicion as a parameter, if suspicion is too high you loose
+    reuturns escape progress
+    outputs the results of the chosen escape action e.g run, you succsefully ran away...
+    """
+    #converts the ammount of suspicion you start with to danger, which is a win/lose condition
     danger = suspicion // 3
     progress = 0
-    
     while (danger < 10 and progress < 10):
         print("What Action Do You Want To Take? 1 = Run, 2 = Hide, 3 = Shortcut")
         choice = int(input())
@@ -137,6 +158,13 @@ def escape(suspicion):
     return progress
 
 def heist(name):
+    """
+    hiest basically runs all the functions in order, creating the continous game
+    takes the players name as a parameter to make it personalized
+    returns nothing
+    outputs all the main game dialog story results score etc
+    """
+
     again = "Y"
     while again == "Y":
         suspicion = 0
@@ -209,6 +237,3 @@ print_signature()
 NAME = input("Enter Your Name: ")
 
 heist(NAME)
-
-
-#ADD COMMMMMMMENTS
