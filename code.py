@@ -1,13 +1,16 @@
-DEBUG = True
-import random
-import math
-
 """
 Yusuf Pasha 
 400684246 
 Computing Assignment #2, text based heist game, 
 where a player must break in crack a code and escape undetected
 """
+##CONSTANTS
+DEBUG = True
+## IMPORTS/Libraries
+import random
+import math
+
+##functions
 def print_signature():
     """
     Prints my name, student number, course code, professors name, and semester/year
@@ -44,7 +47,7 @@ def enter(choice, code):
     print (f"{suspicion} Guards Were Alerted")
 
 
-    #Clue given is dependant on the entry choice, harder entry methods are rewarded with a better clue
+    #Clue given is dependant on the entry choice, harder entry methods are rewarded with a better (more specific) clue
     if (choice >= 4 and code < 500):
         clue = -1
     elif (choice >= 4 and code >= 500):
@@ -57,13 +60,14 @@ def enter(choice, code):
 
 
 def side_room(investigate, code):
-    suspicion = 0
+    
     """
     Second scene of the game, thief investigates a side room for potential clues
-    takes the invvestigation choice (Y/N) and the vault code (randint 100-999) as parameters
+    takes the invvestigation choice (true/false) and the vault code (randint 100-999) as parameters
     outputs the clue message from sideroom
     returns suspicion and the clue
     """
+    suspicion = 0
     if investigate == True:
         luck = random.randint(1,100)
         print("You Stumble Upon a Side Room, Its The Managers Office")
@@ -89,6 +93,8 @@ def crack_code(suspicion, code):
     third scene in the game, its basically a guessing game of the vault code
     with the number of attempts determined by total suspicion raised
     returns new suspicion (int) and whether or not you guessed correct
+    takes total suspicion and the vault code as a parameter
+    outputs the number of guesses you get and the result of the indaivudle guess (right/wrong)
     """
     #the total attempts to crack the code is based off of how much suspicion you have raised through the game
     maxattempts = 10 - suspicion
@@ -231,9 +237,9 @@ def heist(name):
         else:
             again = input("Try Again? Y/N: ")
 
-
+##main prog
 print_signature()
 
-NAME = input("Enter Your Name: ")
+name = input("Enter Your Name: ")
 
-heist(NAME)
+heist(name)
