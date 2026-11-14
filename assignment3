@@ -1,1 +1,14 @@
-#that chinese bead game idk
+def import_board(filename):
+
+#A legal mancala board must contain an even number of items, 
+#all must be integers, and all must be greater than or equal to 0
+
+def show_board(board):
+
+
+
+def score(board):
+
+
+def move(board, index):
+    
