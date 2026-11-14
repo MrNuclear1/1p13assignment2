@@ -1,9 +1,71 @@
-def import_board(filename):
+
 
 #A legal mancala board must contain an even number of items, 
 #all must be integers, and all must be greater than or equal to 0
 
+
+def import_board(filename):
+
+    board = []
+    file = open(filename)
+
+    for line in file:
+        number = line.strip()
+
+       
+        if number == "":
+            file.close()
+            return False
+
+        for character in number:
+            if character < "0" or character > "9":
+                file.close()
+                return False
+
+        board.append(int(number))
+
+    file.close()
+
+    # Check board size
+    if len(board) < 4 or len(board) % 2 != 0:
+        return False
+
+    return board
+
 def show_board(board):
+ 
+    half = len(board) // 2
+
+    # r1
+    print("\t", end="")
+    index = 1
+
+    while index < half:
+        print(board[index], end="\t")
+        index += 1
+
+    print()
+
+    # Storage locations
+    print(board[0], end="\t")
+
+    index = 1
+    while index < half:
+        print("\t", end="")
+        index += 1
+
+    print(board[half])
+
+    # r2 reverse
+    print("\t", end="")
+    index = len(board) - 1
+
+    while index > half:
+        print(board[index], end="\t")
+        index -= 1
+
+    print()
+
 
 
 
